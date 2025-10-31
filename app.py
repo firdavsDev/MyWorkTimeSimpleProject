@@ -176,7 +176,7 @@ if uploaded_file:
 
     st.subheader("📅 Kunlik hisob-kitob")
     st.metric("💡 Umumiy ishxonada bo‘lmagan vaqt", f"{total_absent} soat")
-    st.dataframe(result, width="stretch")
+    st.dataframe(result, use_container_width=True)
 
     # === DASHBOARD CHARTS ===
     st.markdown("---")
