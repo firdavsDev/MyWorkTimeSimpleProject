@@ -8,13 +8,11 @@ import streamlit as st
 WORK_START = datetime.strptime("09:00", "%H:%M").time()
 WORK_END = datetime.strptime("18:00", "%H:%M").time()
 WORK_HOURS = 8
-
+from pathlib import Path
 
 # --- PAGE CONFIG (must be first Streamlit command) ---
 st.set_page_config(page_title="Ish vaqti hisoblagich", page_icon="⏱️", layout="centered")
 
-# --- LOGO ---
-from pathlib import Path
 
 logo_path_svg = Path("assets/logo.svg")
 if logo_path_svg.exists():
