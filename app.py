@@ -10,15 +10,16 @@ WORK_END = datetime.strptime("18:00", "%H:%M").time()
 WORK_HOURS = 8
 
 
+# --- PAGE CONFIG (must be first Streamlit command) ---
+st.set_page_config(page_title="Ish vaqti hisoblagich", page_icon="⏱️", layout="centered")
+
 # --- LOGO ---
 from pathlib import Path
 
 logo_path_svg = Path("assets/logo.svg")
-
 if logo_path_svg.exists():
     st.image(str(logo_path_svg), width=160)
 
-st.set_page_config(page_title="Ish vaqti hisoblagich", page_icon="⏱️", layout="centered")
 st.title("📊 Ish vaqti va yo‘q vaqtni hisoblash")
 st.caption(
     "Excel faylni yuklang (attendance.xlsx). Faylda ustunlar: Дата, приход, уход bo‘lishi kerak."
