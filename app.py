@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from io import BytesIO
 
 import pandas as pd
 import streamlit as st
@@ -8,6 +9,15 @@ WORK_START = datetime.strptime("09:00", "%H:%M").time()
 WORK_END = datetime.strptime("18:00", "%H:%M").time()
 WORK_HOURS = 8
 
+
+# --- LOGO ---
+from pathlib import Path
+
+logo_path_svg = Path("assets/logo.svg")
+
+if logo_path_svg.exists():
+    st.image(str(logo_path_svg), width=160)
+
 st.set_page_config(page_title="Ish vaqti hisoblagich", page_icon="⏱️", layout="centered")
 st.title("📊 Ish vaqti va yo‘q vaqtni hisoblash")
 st.caption(
@@ -15,6 +25,25 @@ st.caption(
 )
 
 uploaded_file = st.file_uploader("Excel faylni yuklang:", type=["xls", "xlsx"])
+
+# --- Downloadable template for users ---
+template_df = pd.DataFrame(
+    [
+        {"Дата": "2025-10-01", "приход": "09:00", "уход": "18:00"},
+        {"Дата": "2025-10-02", "приход": "09:15", "уход": "17:30"},
+        {"Дата": "2025-10-03", "приход": "(нет)", "уход": "(нет)"},
+    ]
+)
+buf = BytesIO()
+with pd.ExcelWriter(buf, engine="openpyxl") as writer:
+    template_df.to_excel(writer, index=False, sheet_name="attendance_template")
+template_bytes = buf.getvalue()
+st.sidebar.download_button(
+    label="Shablonni yuklab olish — Excel",
+    data=template_bytes,
+    file_name="attendance_template.xlsx",
+    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+)
 
 
 # === HELPERS ===
