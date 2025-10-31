@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="80" viewBox="0 0 320 80">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0%" stop-color="#4f46e5" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+  </defs>
+  <rect width="320" height="80" rx="12" fill="#0f172a" />
+  <g transform="translate(18,12)">
+    <circle cx="28" cy="28" r="24" fill="url(#g)" />
+    <text x="64" y="38" font-family="Inter, Arial, sans-serif" font-size="26" fill="#ffffff">MyWorkTime</text>
+  </g>
+</svg>
